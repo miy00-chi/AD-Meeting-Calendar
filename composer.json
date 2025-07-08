@@ -16,6 +16,8 @@
         "postgresql:reset": "php utils/dbResetPostgresql.util.php",
         "postgresql:seed": "php utils/dbSeederPostgresql.util.php",
 
+        "postgresql:migrate": "php utils/dbMigratePostgresql.util.php",
+
         "start": "php -S localhost:8001 router.php"
     },
     "require": {
