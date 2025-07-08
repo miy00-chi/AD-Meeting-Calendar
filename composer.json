@@ -1,0 +1,19 @@
+{
+    "name": "user/ad-meeting-calendar",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "User\\AdMeetingCalendar\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hazel Mito",
+            "email": "hazelmito2029@gmail.com"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8000 router.php"
+    },
+    "require": {}
+}
