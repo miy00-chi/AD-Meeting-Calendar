@@ -6,7 +6,7 @@ RUN addgroup -S developer && adduser -S yourUsernameHere -G developer
 
 WORKDIR /var/www/html
 
-RUN apk add --no-cache git unzip autoconf make g++ icu-dev libzip-dev zlib-dev postgresql-dev libpq
+RUN apk add --no-cache git unzip autoconf make g++ icu-dev libzip-dev zlib-dev postgresql-dev libpq openssl-dev pkgconfig
 RUN docker-php-ext-install pgsql pdo_pgsql intl zip
 RUN pecl install mongodb 
 RUN docker-php-ext-enable mongodb
@@ -21,4 +21,4 @@ EXPOSE 8000
 
 RUN composer install
 
-CMD ["php", "-S", "0.0.0.0:8000", "router.php"]
+CMD ["php", "-d", "extension=mongodb", "-S", "0.0.0.0:8000", "router.php"]
