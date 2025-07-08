@@ -13,7 +13,7 @@
         }
     ],
     "scripts": {
-        "start": "php -S localhost:8000 router.php"
+        "start": "php -S localhost:8001 router.php"
     },
     "require": {}
 }
