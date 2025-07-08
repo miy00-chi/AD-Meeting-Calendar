@@ -1,6 +1,16 @@
 <?php
+require_once '../bootstrap.php';
+require_once UTILS_PATH . '/auth.util.php';
 
-require_once HANDLERS_PATH . "/mongodbChecker.handler.php";
-require_once HANDLERS_PATH . "/postgreChecker.handler.php";
+if (!isLoggedIn()) {
+    header('Location: /pages/login.php');
+    exit;
+}
 
+$pageTitle = 'Dashboard';
+ob_start();
 ?>
+<h1>Welcome, <?= htmlspecialchars(getLoggedUser()['first_name']) ?>!</h1>
+<?php
+$content = ob_get_clean();
+include LAYOUTS_PATH . '/main.layout.php';
