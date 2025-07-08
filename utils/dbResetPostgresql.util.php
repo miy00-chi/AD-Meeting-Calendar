@@ -11,6 +11,11 @@ require_once 'bootstrap.php';
 // 3) envSetter
 require_once UTILS_PATH . '/envSetter.util.php';
 
-
+// Adding database host and connecting
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
 
 ?>
