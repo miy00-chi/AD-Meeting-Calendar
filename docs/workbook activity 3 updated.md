@@ -61,7 +61,7 @@ Change the following:
 
 ## 4. Update the Checker
 
-- [ ] create new path
+- [x] create new path
   - [x] inside the `bootstrap.php` similar to base path create new path depends on the folder your refering. example in this part of checker we will be using `handlers folder` to create path follow this format: `define('<path name>', realpath(BASE_PATH . "<folder name>"));`.
     - change the following: `<path name>` with the path name and `<folder name>` with folder name
     - example for the handlers folder; `define('HANDLERS_PATH', realpath(BASE_PATH . "/handlers"));`
@@ -82,11 +82,11 @@ Change the following:
 ✅ PostgreSQL Connection
 `
 
-                                          Need Debugging:
-                                          ```html
-                                          ❌ MongoDB connection failed: ...
-                                          ❌ Connection Failed: ...
-                                          ```
+                                                                                                  Need Debugging:
+                                                                                                  ```html
+                                                                                                  ❌ MongoDB connection failed: ...
+                                                                                                  ❌ Connection Failed: ...
+                                                                                                  ```
 
   > restart `docker compose up` and `docker compose watch` if you modify the docker after you spin up
 
@@ -144,10 +144,10 @@ $typeConfig = [
 ];
 ```
 
-- [ ] Update `mongodbChecker.handler.php` and `postgreChecker.handler.php`
+- [x] Update `mongodbChecker.handler.php` and `postgreChecker.handler.php`
 
-  - [ ] call the setter
-  - [ ] use the variable created to call the values
+  - [x] call the setter
+  - [x] use the variable created to call the values
         All working:
 
   ```html
@@ -166,21 +166,21 @@ Using `Database` a tool at the tool tab manage and view your database
 
 **Postgresql**
 
-- [ ] Make Sure the Database is working. Go to Docker Desktop and make sure the `image` of `postgre` is green.
-- [ ] In `Database` click `Create Connection`
-- [ ] Select `PostgreSQL`
-- [ ] Setup connection: Port, Username, Password and Database
+- [x] Make Sure the Database is working. Go to Docker Desktop and make sure the `image` of `postgre` is green.
+- [x] In `Database` click `Create Connection`
+- [x] Select `PostgreSQL`
+- [x] Setup connection: Port, Username, Password and Database
   > can be view the data in `compose.yaml`
-- [ ] Click Connect and should show: `Connection Success!` then `Save`
+- [x] Click Connect and should show: `Connection Success!` then `Save`
 
 **Mongodb**
 
-- [ ] Make Sure the Database is working. Go to Docker Desktop and make sure the `image` of `mongodb` is green.
-- [ ] In `Database` click `Create Connection`
-- [ ] Select `MongoDB`
-- [ ] Setup connection: Port
+- [x] Make Sure the Database is working. Go to Docker Desktop and make sure the `image` of `mongodb` is green.
+- [x] In `Database` click `Create Connection`
+- [x] Select `MongoDB`
+- [x] Setup connection: Port
   > can be view the data in `compose.yaml`
-- [ ] Click Connect and should show: `Connection Success!` then `Save`
+- [x] Click Connect and should show: `Connection Success!` then `Save`
 
 ## 8. Design Database: Creating Database formula preparation for automation
 
@@ -188,12 +188,12 @@ Using the GUI of database you need to formulate your data structure on how you w
 in this demo we need to have a design for our users
 Task: Users can be divided into group, they can login, basic information and role.
 
-- [ ] Design a structure
-- [ ] Create Base Pattern using the tool by simple selecting the database from `Database`
+- [x] Design a structure
+- [x] Create Base Pattern using the tool by simple selecting the database from `Database`
 
-  - [ ] Select your <database name> ex.: `mydatabase`
-  - [ ] Select `Tables` and look for the `+` sign then click it
-  - [ ] Create Sample code then copy
+  - [x] Select your <database name> ex.: `mydatabase`
+  - [x] Select `Tables` and look for the `+` sign then click it
+  - [x] Create Sample code then copy
 
   ```sql
   CREATE TABLE IF NOT EXISTS public."users" (
@@ -207,17 +207,17 @@ Task: Users can be divided into group, they can login, basic information and rol
   );
   ```
 
-  - [ ] Goto your `Explorer`
-  - [ ] Create new file for that specific model ex.: `users.model.sql`
-  - [ ] Add conditional command on your SQL code
-    - [ ] between `CREATE TABLE` and `<table name>` add the following code `IF NOT EXISTS`
+  - [x] Goto your `Explorer`
+  - [x] Create new file for that specific model ex.: `users.model.sql`
+  - [x] Add conditional command on your SQL code
+    - [x] between `CREATE TABLE` and `<table name>` add the following code `IF NOT EXISTS`
 
 Task:
 Create more tables for the following
 
-- [ ] Projects
-- [ ] Project ↔ User assignments (project_user)
-- [ ] Tasks
+- [x] Projects
+- [x] Project ↔ User assignments (project_user)
+- [x] Tasks
 
 Just Copy the following for the `project_users.model.sql`
 
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS project_users (
 );
 ```
 
-- [ ] for all id copy this: `id uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),`
+- [x] for all id copy this: `id uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),`
 
 ## 9. Automation: Creating Resetter
 
@@ -249,9 +249,9 @@ In this step we will design an automation that resets the database when needed a
   - Apply SQL Code
 - Output: Create the Table/s Ready for Use
 
-- [ ] Creating a new util code `dbResetPostgresql.util.php`
+- [x] Creating a new util code `dbResetPostgresql.util.php`
 
-- [ ] Setting up requirements
+- [x] Setting up requirements
   > Just copy this
 
 ```php
@@ -267,7 +267,7 @@ require_once 'bootstrap.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 ```
 
-- [ ] Adding the database host and connecting
+- [x] Adding the database host and connecting
 
 ```php
 $host = $databases['pgHost'];
@@ -283,7 +283,7 @@ $pdo = new PDO($dsn, $username, $password, [
 ]);
 ```
 
-- [ ] Using specific commands to use to automatically generate the database tables
+- [x] Using specific commands to use to automatically generate the database tables
 
 ```php
 // Just indicator it was working
@@ -304,7 +304,7 @@ $pdo->exec($sql);
 
 > repeat this code times the number of tables
 
-- [ ] Make sure it clean the tables
+- [x] Make sure it clean the tables
 
 ```php
 echo "Truncating tables…\n";
@@ -313,25 +313,25 @@ foreach (['users'] as $table) {
 }
 ```
 
-- [ ] Add the command in the `composer.json`
+- [x] Add the command in the `composer.json`
 
   - below `scripts` add a new library key set
   - `"postgresql:reset": "php utils/dbResetPostgresql.util.php"`
 
-- [ ] Test it if working
+- [x] Test it if working
 
   - in terminal use command `composer postgresql:reset`
     Partial Complete: ✅ PostgreSQL reset complete!
     Issue Arise from SQL Code: ❌ Could not read database/modelName.model.sql
 
-- [ ] visit GUI extension for database for checking and if each table exist congrats it works!!! 🎉
+- [x] visit GUI extension for database for checking and if each table exist congrats it works!!! 🎉
 
 ## 10. Adding Seeder: Creating Automation for viewing Data
 
 Seeding is terminology used refering to inputing data in database upon creation, making sure it is connected and can view data
 
-- [ ] duplicate the `dbResetPostgresql.util.php` and rename it `dbSeederPostgresql.util.php`
-- [ ] add the following logic for
+- [x] duplicate the `dbResetPostgresql.util.php` and rename it `dbSeederPostgresql.util.php`
+- [x] add the following logic for
 - Input: Database Code
 - Process:
   - Check Database Connection
@@ -340,10 +340,10 @@ Seeding is terminology used refering to inputing data in database upon creation,
   - Add Seed Data(Dummy Data)
 - Output: Create the Table/s Ready for Use and can view data
 
-- [ ] before logic prepare the data a head
-  - [ ] create in `staticData/dummies` a file for the specific model
-  - [ ] (in this demo we will use the `users model` with `users dummies`) create file named `users.staticData.php`
-  - [ ] add simple dummy data using array of key arrays
+- [x] before logic prepare the data a head
+  - [x] create in `staticData/dummies` a file for the specific model
+  - [x] (in this demo we will use the `users model` with `users dummies`) create file named `users.staticData.php`
+  - [x] add simple dummy data using array of key arrays
 
 ```php
 <?php
@@ -353,7 +353,7 @@ return [
 ]
 ```
 
-    - [ ] call the dummy data to the seeder code
+    - [x] call the dummy data to the seeder code
 
 ```php
 // after settings requirements
@@ -364,7 +364,7 @@ $users = require_once DUMMIES_PATH . '/users.staticData.php';
 // connect to postgresql
 ```
 
-    - [ ] add seeding logic
+    - [x] add seeding logic
 
 ```php
 // simple indicator command seeding started
@@ -388,28 +388,28 @@ foreach ($users as $u) {
 }
 ```
 
-- [ ] Add the command in the `composer.json`
+- [x] Add the command in the `composer.json`
 
   - below `scripts` add a new library key set
   - `"postgresql:seed": "php utils/dbSeederPostgresql.util.php"`
     Partial Complete: ✅ PostgreSQL seeding complete!
     Issue Arise from SQL Code: ❌ Could not read database/modelName.model.sql
 
-- [ ] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
+- [x] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
 
 ## 11. Adding Migration: Creating Automation for Migrating New Table Data
 
 Resets and add/update database
 
-- [ ] duplicate the `dbResetPostgresql.util.php` and rename it `dbMigratePostgresql.util.php`
-- [ ] delete all codes below `$pdo`
+- [x] duplicate the `dbResetPostgresql.util.php` and rename it `dbMigratePostgresql.util.php`
+- [x] delete all codes below `$pdo`
 
 we will change the logic here:
 
 - select all tables and drop them: means deleting them
 - then create newly updated tables
 
-- [ ] add this deleting part, add all tables inside the array:
+- [x] add this deleting part, add all tables inside the array:
 
 ```php
 echo "Dropping old tables…\n";
@@ -422,7 +422,7 @@ foreach ([
 }
 ```
 
-- [ ] then add again the old setter code
+- [x] then add again the old setter code
 
 ```php
 echo "Applying schema from database/users.model.sql…\n";
@@ -438,14 +438,14 @@ if ($sql === false) {
 $pdo->exec($sql);
 ```
 
-- [ ] Add the command in the `composer.json`
+- [x] Add the command in the `composer.json`
 
   - below `scripts` add a new library key set
   - `"postgresql:migrate": "php utils/dbMigratePostgresql.util.php"`
     Partial Complete: ✅ PostgreSQL seeding complete!
     Issue Arise from SQL Code: ❌ Could not read database/modelName.model.sql
 
-- [ ] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
+- [x] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
 
 ### 12. Making Functionality with database: postgresql
 
